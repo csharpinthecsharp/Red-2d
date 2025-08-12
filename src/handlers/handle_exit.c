@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   handle_exit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/12 15:25:43 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/12 16:05:18 by ltrillar         ###   ########.fr       */
+/*   Created: 2025/08/12 16:07:02 by ltrillar          #+#    #+#             */
+/*   Updated: 2025/08/12 16:17:02 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "../../include/so_long.h"
 
-
-int main(void)
+int exitKey(int keycode, t_data *d)
 {
-
-    t_data data;
-    t_data *d = &data;
-
-    load_t(&data);
-    openWindow(d, &d->t);
+    if (keycode == 65307)
+    {
+        mlx_destroy_window(d->mlx, d->win);
+        ft_printf("%s%s Closing... \n", RED, CRY);
+        exit(0);
+    }
     return (0);
 }
-

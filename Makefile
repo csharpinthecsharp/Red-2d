@@ -22,6 +22,8 @@ MLX_EX		=	$(MLX_LIB) $(MLX_FLAG)
 
 C_FILE		=	so_long.c				\
 				handlers/handle_textures.c		\
+				handlers/handle_window.c \
+				handlers/handle_exit.c \
 
 SRC_DIR		=	./src/
 

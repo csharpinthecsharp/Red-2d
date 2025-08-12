@@ -6,7 +6,7 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 20:24:11 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/12 02:45:33 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/12 16:15:17 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,16 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+/*----- COLORS -----*/
+# define RED "\x1b[31m"
+# define GREEN "\x1b[32m"
+# define RESET "\x1b[0m"
+
+/*----- EMOJI -----*/
+# define NO "\xE2\x9C\x96"
+# define YES "\xE2\x9C\x94"
+# define CRY "\xF0\x9F\x98\xA2"
+
 typedef struct s_textures
 {
     void *font;
@@ -26,13 +36,26 @@ typedef struct s_textures
     char *wall_path;
 } t_textures;
 
+typedef struct s_data
+{
+    void *mlx;
+    void *win;    
+    int width;
+    int height;
+    t_textures t;  
+} t_data;
+
 /*
 ** NAME: Handlers
 ** PATH: /so_long/handlers/
 ** DESC: Handlers function are meant to handle some cases.
 */
-int load_t();
+void load_t(t_data *d);
 void load_t_path(t_textures *t);
 int is_right_path(t_textures *t);
+
+void openWindow(t_data *d, t_textures *t);
+int exitKey(int keycode, t_data *d);
+
 
 #endif
