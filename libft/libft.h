@@ -47,6 +47,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len);
 int		ft_atoi(const char *str);
 void	*ft_calloc(size_t nmemb, size_t size);
 char	*ft_strdup(const char *s);
+char    *ft_strndup(const char *s, size_t n);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
@@ -75,5 +76,9 @@ void	ft_put_hex(unsigned int num, int uppercase);
 int		ft_print_hex(unsigned int num, int uppercase);
 int		ft_int_len(long n);
 char	*get_next_line(int fd);
+char	*final_return(char **reste, ssize_t bytes_read);
+char	*handle_error(char **reste);
+char	*update_reste(char **reste, char *buffer); 
+char	*extract_line(char **reste, char *newline);
 
 #endif

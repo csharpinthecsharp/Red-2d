@@ -1,5 +1,5 @@
 NAME = libft.a
-SRC = $(wildcard ft*.c)
+SRC = $(wildcard ft*.c) get_next_line.c get_next_line_utils.c
 OBJ = $(SRC:.c=.o)
 
 CC = gcc

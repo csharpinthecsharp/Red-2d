@@ -21,9 +21,11 @@ int main(void)
     t_maps maps;
     t_maps *m = &maps;
 
+    int		fd;
+	char	*line;
+
     load_t(&data);
     openWindow(d, &d->t); 
-
 
     if (!m)
     {
@@ -40,8 +42,20 @@ int main(void)
     }
     ft_printf("%s * %s MAPS: Maps successfuly loaded!\n", GREEN, YES);
 
+	fd = open("./src/maps/default.ber", O_RDONLY);
+	if (fd < 0)
+	{
+		ft_printf("Erreur lors de l'ouverture du fichier");
+		return (1);
+	}
+	while ((line = get_next_line(fd)) != NULL)
+	{
+		ft_printf("%s", line);
+		free(line);
+	}
+	close(fd);
+
     mlx_hook(d->win, 2, 1L << 0, exitKey, d);
     mlx_loop(d->mlx);
     return (0);
 }
-

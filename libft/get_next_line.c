@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
-static char	*extract_line(char **reste, char *newline)
+char	*extract_line(char **reste, char *newline)
 {
 	size_t	line_len;
 	char	*line;
@@ -26,7 +26,7 @@ static char	*extract_line(char **reste, char *newline)
 	return (line);
 }
 
-static char	*update_reste(char **reste, char *buffer)
+char	*update_reste(char **reste, char *buffer)
 {
 	char	*temp;
 
@@ -41,14 +41,14 @@ static char	*update_reste(char **reste, char *buffer)
 	return (*reste);
 }
 
-static char	*handle_error(char **reste)
+char	*handle_error(char **reste)
 {
 	free(*reste);
 	*reste = NULL;
 	return (NULL);
 }
 
-static char	*final_return(char **reste, ssize_t bytes_read)
+char	*final_return(char **reste, ssize_t bytes_read)
 {
 	char	*line;
 
@@ -88,27 +88,3 @@ char	*get_next_line(int fd)
 	}
 	return (final_return(&reste, bytes_read));
 }
-
-/*
-#include <stdio.h>
-
-int	main(void)
-{
-	int		fd;
-	char	*line;
-
-	fd = open("meow.txt", O_RDONLY);
-	if (fd < 0)
-	{
-		perror("Erreur lors de l'ouverture du fichier");
-		return (1);
-	}
-	while ((line = get_next_line(fd)) != NULL)
-	{
-		printf("%s", line); // Affiche chaque ligne
-		free(line);         // Libère la mémoire allouée pour chaque ligne
-	}
-	close(fd);
-	return (0);
-}
-*/
