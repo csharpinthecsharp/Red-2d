@@ -12,10 +12,16 @@
 
 #ifndef LIBFT_H
 # define LIBFT_H
-
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1024
+# elif BUFFER_SIZE > 1000000
+#  undef BUFFER_SIZE
+#  define BUFFER_SIZE 1000000
+# endif
 # include <stdarg.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <fcntl.h>
 
 void	ft_bzero(void *s, size_t n);
 int		ft_isalpha(int c);
@@ -68,5 +74,6 @@ void	ft_xbigprint(va_list args, int *count);
 void	ft_put_hex(unsigned int num, int uppercase);
 int		ft_print_hex(unsigned int num, int uppercase);
 int		ft_int_len(long n);
+char	*get_next_line(int fd);
 
 #endif

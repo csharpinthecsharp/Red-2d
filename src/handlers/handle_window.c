@@ -38,7 +38,4 @@ void openWindow(t_data *d, t_textures *t)
     }
 
     ft_printf("%s * %s Window: Successfuly created!\n", GREEN, YES);
-
-    mlx_hook(d->win, 2, 1L << 0, exitKey, d);
-    mlx_loop(d->mlx);
 }

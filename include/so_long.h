@@ -45,6 +45,12 @@ typedef struct s_data
     t_textures t;  
 } t_data;
 
+typedef struct s_maps
+{
+    void *defa;
+    char *default_path;
+} t_maps;
+
 /*
 ** NAME: Handlers
 ** PATH: /so_long/handlers/
