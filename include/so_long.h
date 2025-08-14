@@ -12,11 +12,13 @@
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
+# define TILE_SIZE 40
 
 #include "../libft/libft.h"
 #include "../minilibx-linux/mlx.h"
 #include <stdlib.h>
 #include <unistd.h>
+
 
 /*----- COLORS -----*/
 # define RED "\x1b[31m"
@@ -63,5 +65,7 @@ int is_right_path(t_textures *t);
 void openWindow(t_data *d, t_textures *t);
 int exitKey(int keycode, t_data *d);
 
+void print_line(char *line, t_data *d, t_textures *t, int y);
+void free_textures(t_data *d, t_textures *t);
 
 #endif

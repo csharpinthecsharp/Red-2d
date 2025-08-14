@@ -29,7 +29,7 @@ void openWindow(t_data *d, t_textures *t)
         return;
     }
 
-    d->win = mlx_new_window(d->mlx, 800, 400, "My Minecraft 2D Game :)");
+    d->win = mlx_new_window(d->mlx, 1000, 480, "Minecraft si kaaris avait pas mis la lumiere sur sevran");
     if (!d->win) {
         ft_printf("%s * %s Window: Creation failed!\n", RED, NO);
         mlx_destroy_image(d->mlx, t->font);
