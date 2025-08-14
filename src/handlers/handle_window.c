@@ -21,11 +21,13 @@ void openWindow(t_data *d, t_textures *t)
 
     t->font = mlx_xpm_file_to_image(d->mlx, t->font_path, &d->width, &d->height);
     t->wall = mlx_xpm_file_to_image(d->mlx, t->wall_path, &d->width, &d->height);
+    t->player = mlx_xpm_file_to_image(d->mlx, t->player_path, &d->width, &d->height);
 
     if (!t->font || !t->wall) {
         ft_printf("%s * %s MLX: could not load XPM file!\n", RED, NO);
         if (t->font) mlx_destroy_image(d->mlx, t->font);
         if (t->wall) mlx_destroy_image(d->mlx, t->wall);
+        if (t->player) mlx_destroy_image(d->mlx, t->player);
         return;
     }
 
@@ -34,6 +36,7 @@ void openWindow(t_data *d, t_textures *t)
         ft_printf("%s * %s Window: Creation failed!\n", RED, NO);
         mlx_destroy_image(d->mlx, t->font);
         mlx_destroy_image(d->mlx, t->wall);
+        mlx_destroy_image(d->mlx, t->player);
         return;
     }
 

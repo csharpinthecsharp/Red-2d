@@ -6,7 +6,7 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 20:24:11 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/12 16:15:17 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/15 01:31:38 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ typedef struct s_textures
     char *font_path;
     void *wall;
     char *wall_path;
+    void *player;
+    char *player_path;
 } t_textures;
 
 typedef struct s_data
@@ -44,6 +46,8 @@ typedef struct s_data
     void *win;    
     int width;
     int height;
+    int player_x;
+    int player_y;
     t_textures t;  
 } t_data;
 
@@ -64,6 +68,8 @@ int is_right_path(t_textures *t);
 
 void openWindow(t_data *d, t_textures *t);
 int exitKey(int keycode, t_data *d);
+int keyPress(int keycode, t_data *d);
+int close_game(t_data *d);
 
 void print_line(char *line, t_data *d, t_textures *t, int y);
 void free_textures(t_data *d, t_textures *t);

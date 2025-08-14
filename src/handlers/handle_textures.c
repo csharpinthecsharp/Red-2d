@@ -33,6 +33,11 @@ int is_right_path(t_textures *t)
         ft_printf("%s * %s Assets: %s not accessible!\n", RED, NO, t->wall_path);
         return (0);
     }
+    if (access(t->player_path, R_OK) != 0)
+    {
+        ft_printf("%s * %s Assets: %s not accessible!\n", RED, NO, t->wall_path);
+        return (0);
+    }
     else
         ft_printf("%s * %s Assets: %s successfuly loaded!\n", GREEN, YES, t->wall_path);
     return (1);
@@ -42,6 +47,7 @@ void load_t_path(t_textures *t)
 {
     t->font_path = "./src/textures/font.xpm";
     t->wall_path = "./src/textures/wall.xpm";
+    t->player_path = "./src/textures/player.xpm";
 }
 
 void load_t(t_data *d)

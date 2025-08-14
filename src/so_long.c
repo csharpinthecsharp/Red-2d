@@ -6,7 +6,7 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 15:25:43 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/12 16:05:18 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/15 01:38:52 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ void print_line(char *line, t_data *d, t_textures *t, int y)
         else if (line[i] == '1') {
             mlx_put_image_to_window(d->mlx, d->win, t->wall, i * TILE_SIZE, y * TILE_SIZE);
         }
+        else if (line[i] == 'P') {
+            mlx_put_image_to_window(d->mlx, d->win, t->player, i * TILE_SIZE, y * TILE_SIZE);
+                d->player_x = i;
+                d->player_y = y;
+        }
         else 
             ft_printf("%s * %s Invalid character in map: %c\n", RED, NO, line[i]);
         i++;
@@ -41,7 +46,18 @@ void free_textures(t_data *d, t_textures *t)
         mlx_destroy_image(d->mlx, t->font);
     if (t->wall_path)
         mlx_destroy_image(d->mlx, t->wall);
+    if (t->player_path)
+        mlx_destroy_image(d->mlx, t->player);
 }
+
+int close_game(t_data *d)
+{
+    ft_printf("%s * %s Closing game...\n", RED, NO);
+    free_textures(d, &d->t);
+    mlx_destroy_window(d->mlx, d->win);
+    exit(0);
+}
+
                         
 int main(void)
 {
@@ -50,7 +66,7 @@ int main(void)
 
     t_maps maps;
     t_maps *m = &maps;
-
+    
     int y; 
     y = 0;
 
@@ -88,10 +104,10 @@ int main(void)
         y++;
 	}
 	close(fd);
-    free_textures(d, &d->t);
     ft_printf("%s * %s FREE: Textures successfuly freed!\n", GREEN, YES);
 
-    mlx_hook(d->win, 2, 1L << 0, exitKey, d);
+    mlx_hook(d->win, 2, 1L << 0, keyPress, d);    
+    mlx_hook(d->win, 17, 0, close_game, d);
     mlx_loop(d->mlx);
     return (0);
 }

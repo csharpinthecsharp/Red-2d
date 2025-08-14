@@ -20,10 +20,10 @@ MLX_LIB		=	$(addprefix $(MLX_PATH), $(MLX_FILE))
 
 MLX_EX		=	$(MLX_LIB) $(MLX_FLAG)
 
-C_FILE		=	so_long.c				\
-				handlers/handle_textures.c		\
-				handlers/handle_window.c \
-				handlers/handle_exit.c \
+C_FILE		=	so_long.c					\
+				handlers/handle_textures.c	\
+				handlers/handle_window.c	\
+				handlers/handle_hooks.c 	\
 
 SRC_DIR		=	./src/
 
