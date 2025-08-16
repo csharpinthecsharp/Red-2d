@@ -6,7 +6,7 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 03:04:04 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/15 04:25:29 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/16 18:06:14 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,12 @@ void print_line(char *line, t_data *d, t_textures *t, int y)
             mlx_put_image_to_window(d->mlx, d->win, t->player, i * TILE_SIZE, y * TILE_SIZE);
                 d->player_x = i;
                 d->player_y = y;
+        }
+        else if (line[i] == 'C') {
+            mlx_put_image_to_window(d->mlx, d->win, t->f_00, i * TILE_SIZE, y * TILE_SIZE);
+            d->coins.x = i;
+            d->coins.y = y;
+            d->coin_count++;
         }
         else 
             ft_printf("%s * %s Invalid character in map: %c\n", RED, NO, line[i]);

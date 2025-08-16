@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ltrillar <ltrillar@student.42luxembourg    +#+  +:+       +#+        */
+/*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 19:15:45 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/06/28 12:10:03 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/15 03:39:14 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,26 +53,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		j++;
 	}
 	dup[i + j] = '\0';
-	return (dup);
-}
-
-char	*ft_strdup(const char *s)
-{
-	char	*dup;
-	int		i;
-
-	i = 0;
-	dup = malloc(sizeof(char) * ft_strlen(s) + 1);
-	if (!dup)
-	{
-		return (NULL);
-	}
-	while (s[i])
-	{
-		dup[i] = s[i];
-		i++;
-	}
-	dup[i] = '\0';
 	return (dup);
 }
 

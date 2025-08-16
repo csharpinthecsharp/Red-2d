@@ -6,7 +6,7 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 03:01:10 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/15 04:25:26 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/16 17:08:24 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,14 @@ void free_textures(t_data *d, t_textures *t)
         mlx_destroy_image(d->mlx, t->wall);
     if (t->player_path)
         mlx_destroy_image(d->mlx, t->player);
+    if (t->f_00)
+        mlx_destroy_image(d->mlx, t->f_00);
+    if (t->f_01)
+        mlx_destroy_image(d->mlx, t->f_01);
+    if (t->f_02)
+        mlx_destroy_image(d->mlx, t->f_02);
+    if (t->f_03)
+        mlx_destroy_image(d->mlx, t->f_03);
 }
 
 int close_game(t_data *d)

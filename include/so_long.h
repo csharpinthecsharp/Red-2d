@@ -6,13 +6,14 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 20:24:11 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/15 01:31:38 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/16 18:11:25 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 # define TILE_SIZE 40
+# define FRAME_DELAY 5000
 
 #include "../libft/libft.h"
 #include "../minilibx-linux/mlx.h"
@@ -38,7 +39,23 @@ typedef struct s_textures
     char *wall_path;
     void *player;
     char *player_path;
+
+    void *f_00;
+    void *f_01;
+    void *f_02;
+    void *f_03;
+    char *f_00_path;
+    char *f_01_path;
+    char *f_02_path;
+    char *f_03_path;
+
 } t_textures;
+
+
+typedef struct s_coin {
+    int x;
+    int y;
+}   t_coin;
 
 typedef struct s_data
 {
@@ -49,6 +66,9 @@ typedef struct s_data
     int player_x;
     int player_y;
     t_textures t;  
+    char **map;
+    t_coin coins;
+    int coin_count;
 } t_data;
 
 typedef struct s_maps
@@ -67,9 +87,12 @@ void load_t_path(t_textures *t);
 int is_right_path(t_textures *t);
 
 void openWindow(t_data *d, t_textures *t);
-int exitKey(int keycode, t_data *d);
 int keyPress(int keycode, t_data *d);
-int close_game(t_data *d);
+void map(t_data *d, t_maps *m);
+int isWall(int x, int y, t_data *d);
+
+void set_anim_data(t_data *d);
+int animate_coin(void);
 
 void print_line(char *line, t_data *d, t_textures *t, int y);
 void free_textures(t_data *d, t_textures *t);
