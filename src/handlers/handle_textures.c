@@ -6,7 +6,7 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 15:25:39 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/16 18:21:46 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/16 22:41:08 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int is_right_path(t_textures *t)
 {   
     int     i;
-    char    *paths[7];
+    char    *paths[4];
 
     if (!t)
     {
@@ -27,12 +27,9 @@ int is_right_path(t_textures *t)
     paths[1] = t->wall_path;
     paths[2] = t->player_path;
     paths[3] = t->f_00_path;
-    paths[4] = t->f_01_path;
-    paths[5] = t->f_02_path;
-    paths[6] = t->f_03_path;
      
     i = 0;
-    while (i <= 6)
+    while (i <= 3)
     {
         if (access(paths[i], R_OK) != 0)
         {
@@ -53,9 +50,6 @@ void load_t_path(t_textures *t)
     t->player_path = "./src/textures/player.xpm";
 
     t->f_00_path = "./src/textures/animation/f_00.xpm";
-    t->f_01_path = "./src/textures/animation/f_01.xpm";
-    t->f_02_path = "./src/textures/animation/f_02.xpm";
-    t->f_03_path = "./src/textures/animation/f_03.xpm";
 }
 
 void load_t(t_data *d)

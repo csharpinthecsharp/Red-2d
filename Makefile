@@ -26,7 +26,6 @@ C_FILE		=	so_long.c					\
 				handlers/handle_hooks.c 	\
 				handlers/handle_map.c      \
 				handlers/handle_free.c 		\
-				handlers/h_anim/animation.c \
 
 SRC_DIR		=	./src/
 

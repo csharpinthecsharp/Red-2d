@@ -6,7 +6,7 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 03:04:04 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/16 18:06:14 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/16 22:12:59 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,16 @@ void print_line(char *line, t_data *d, t_textures *t, int y)
         }
         else if (line[i] == 'C') {
             mlx_put_image_to_window(d->mlx, d->win, t->f_00, i * TILE_SIZE, y * TILE_SIZE);
-            d->coins.x = i;
-            d->coins.y = y;
+
+            t_coin *new_coins  = realloc(d->coins, sizeof(t_coin) * (d->coin_count + 1)); 
+            if (!new_coins)
+            {
+                    ft_printf("Memory allocation failed\n");
+                    return;
+            } 
+            d->coins = new_coins;
+            d->coins[d->coin_count].x = i;
+            d->coins[d->coin_count].y = y;
             d->coin_count++;
         }
         else 
@@ -55,6 +63,7 @@ void map(t_data *d, t_maps *m)
     int		fd;
 	char	*line;
 
+    d->coin_count = 0;
     if (!m)
     {
         ft_printf("%s * %s MAPS: Struct failed!\n", RED, NO);
