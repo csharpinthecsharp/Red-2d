@@ -12,6 +12,19 @@
 
 #include "../include/so_long.h"
 
+void    init_data(t_data *d)
+{
+    d->mlx = NULL;
+    d->win = NULL;
+    d->map = NULL;
+    d->coins = NULL;
+    d->coin_count = 0;
+    d->player_x = 0;
+    d->player_y = 0;
+    d->exit_loc_x = 0;
+    d->exit_loc_y = 0;
+}
+
 int	main(int ac, char *av[])
 {
 	t_data	data;
@@ -21,8 +34,7 @@ int	main(int ac, char *av[])
 	d = &data;
 	if (ac == 2)
 	{
-		data.coins = NULL;
-		d->coin_count = 0;
+		init_data(&data);
 		load_t(&data);
 		open_window(d, &d->t);
 		map(&data, &maps, av[1]);

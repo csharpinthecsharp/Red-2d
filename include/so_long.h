@@ -70,6 +70,13 @@ typedef struct s_maps
 	char		*default_path;
 }				t_maps;
 
+typedef struct s_render_args
+{
+    t_data      *d;
+    t_textures  *t;
+    int         y;
+}   t_render_args;
+
 /*
 ** NAME: Handlers
 ** PATH: /so_long/handlers/
@@ -85,8 +92,10 @@ int				isWall(int x, int y, t_data *d);
 void			is_coin(int x, int y, t_data *d);
 int				close_game(t_data *d);
 void			map(t_data *d, t_maps *m, char *ber);
-
-void			print_line(char *line, t_data *d, t_textures *t, int y);
+void 		    handle_coin(int i, t_render_args *a);
+void   			draw_basic_tile(int i, char tile, t_render_args *a);
+void   			print_line(char *line, t_render_args *a);
 void			free_textures(t_data *d, t_textures *t);
+void   			init_data(t_data *d);
 
 #endif

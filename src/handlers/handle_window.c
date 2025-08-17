@@ -14,11 +14,6 @@
 
 void	open_window(t_data *d, t_textures *t)
 {
-	if (!d || !t || !d->mlx)
-	{
-		ft_printf("Error\nData or mlx invalid.\n");
-		close_game(d);
-	}
 	t->font = mlx_xpm_file_to_image(d->mlx, t->font_path, &d->width,
 			&d->height);
 	t->wall = mlx_xpm_file_to_image(d->mlx, t->wall_path, &d->width,

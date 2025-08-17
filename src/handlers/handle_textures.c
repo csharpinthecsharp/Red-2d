@@ -6,7 +6,7 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 15:25:39 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/17 01:59:30 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/17 14:06:12 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	is_right_path(t_textures *t, t_data *d)
 		if (access(paths[i], R_OK) != 0)
 		{
 			ft_printf("Error\nAssets are not reachable.\n");
-			close_game(d);
+			return (0);
 		}
 		i += 1;
 	}
@@ -53,14 +53,16 @@ void	load_t(t_data *d)
 {
 	d->exit_loc_x = -1;
 	d->exit_loc_y = -1;
-	load_t_path(&d->t);
-	if (is_right_path(&d->t, d))
-	{
-		d->mlx = mlx_init();
-		if (!d->mlx)
-		{
-			ft_printf("Error\nMlx is not set.\n");
-			close_game(d);
-		}
-	}
+    load_t_path(&d->t);
+    if (!is_right_path(&d->t, d))
+    {
+        ft_printf("Error\nTexture paths are invalid.\n");
+        close_game(d);
+    }
+    d->mlx = mlx_init();
+    if (!d->mlx)
+    {
+        ft_printf("Error\nMlx is not set.\n");
+        close_game(d);
+    }
 }
