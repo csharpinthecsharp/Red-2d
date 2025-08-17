@@ -51,8 +51,6 @@ void	load_t_path(t_textures *t)
 
 void	load_t(t_data *d)
 {
-	d->exit_loc_x = -1;
-	d->exit_loc_y = -1;
     load_t_path(&d->t);
     if (!is_right_path(&d->t, d))
     {

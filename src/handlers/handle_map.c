@@ -140,5 +140,8 @@ void	map(t_data *d, t_maps *m, char *ber)
 		free(line);
 		y++;
 	}
+	//A FAIRE; The map must contain 1 exit, at least 1 collectible, and 1 starting position to
+	// be valid.
 	close(fd);
+	d->map[y] = NULL;
 }
