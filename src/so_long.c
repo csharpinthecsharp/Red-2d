@@ -18,6 +18,11 @@ void    init_data(t_data *d)
     d->win = NULL;
     d->map = NULL;
     d->coins = NULL;
+    d->t.wall = NULL;
+    d->t.player = NULL;
+    d->t.f_00 = NULL;
+    d->t.exit = NULL;
+    d->t.font = NULL;
     d->coin_count = 0;
     d->player_x = 0;
     d->player_y = 0;

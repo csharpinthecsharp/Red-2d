@@ -63,6 +63,6 @@ void	load_t(t_data *d)
     if (!d->mlx)
     {
         ft_printf("Error\nMlx is not set.\n");
-        close_game(d);
+        exit(EXIT_FAILURE);
     }
 }

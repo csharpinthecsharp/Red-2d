@@ -12,26 +12,52 @@
 
 #include "../../include/so_long.h"
 
-void	free_textures(t_data *d, t_textures *t)
+void    free_textures(t_data *d, t_textures *t)
 {
-	if (t->font_path)
-		mlx_destroy_image(d->mlx, t->font);
-	if (t->wall_path)
-		mlx_destroy_image(d->mlx, t->wall);
-	if (t->player_path)
-		mlx_destroy_image(d->mlx, t->player);
-	if (t->f_00)
-		mlx_destroy_image(d->mlx, t->f_00);
-	if (t->exit)
-		mlx_destroy_image(d->mlx, t->exit);
+    if (!d->mlx)
+        return;
+    if (t->font)
+        mlx_destroy_image(d->mlx, t->font);
+    if (t->wall)
+        mlx_destroy_image(d->mlx, t->wall);
+    if (t->player)
+        mlx_destroy_image(d->mlx, t->player);
+    if (t->f_00)
+        mlx_destroy_image(d->mlx, t->f_00);
+    if (t->exit)
+        mlx_destroy_image(d->mlx, t->exit);
 }
 
-int	close_game(t_data *d)
+void    free_map(char **map)
 {
-	free_textures(d, &d->t);
-	mlx_destroy_window(d->mlx, d->win);
-	mlx_destroy_display(d->mlx);
-	free(d->mlx);
-	exit(0);
-	return (0);
+    int i = 0;
+
+    if (!map)
+        return;
+    while (map[i])
+        free(map[i++]);
+    free(map);
+}
+
+void    free_coins(t_data *d)
+{
+    if (d->coins)
+        free(d->coins);
+}
+
+int close_game(t_data *d)
+{
+    free_textures(d, &d->t);
+    free_map(d->map);
+    free_coins(d);
+
+    if (d->win)
+        mlx_destroy_window(d->mlx, d->win);
+    if (d->mlx)
+    {
+        mlx_destroy_display(d->mlx);
+        free(d->mlx);
+    }
+    exit(0);
+    return (0);
 }

@@ -97,5 +97,7 @@ void   			draw_basic_tile(int i, char tile, t_render_args *a);
 void   			print_line(char *line, t_render_args *a);
 void			free_textures(t_data *d, t_textures *t);
 void   			init_data(t_data *d);
+void   		    free_coins(t_data *d);
+void    		free_map(char **map);
 
 #endif
