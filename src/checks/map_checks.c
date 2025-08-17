@@ -6,7 +6,7 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 19:45:56 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/17 20:40:50 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/17 20:52:31 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,12 @@
 
 int format_check(char *str)
 {
-	int i;
+    int len;
 
-	i = 0;
-	while (str[i])
-	{
-		if ((str[i] == '.') && 
-			(str[i + 1] == 'b') &&
-			(str[i + 2] == 'e') &&
-			str[i + 3] == 'r')
-			return (1);
-		i++;
-	}
-	return (0);
+    len = ft_strlen(str);
+    if (len < 4)
+        return (0);
+    if (ft_strncmp(str + len - 4, ".ber", 4) == 0)
+        return (1);
+    return (0);
 }
