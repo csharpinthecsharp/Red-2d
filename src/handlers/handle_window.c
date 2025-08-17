@@ -15,7 +15,7 @@
 void openWindow(t_data *d, t_textures *t)
 {
     if (!d || !t || !d->mlx) {
-        ft_printf("Error\n, Data or mlx invalid.\n");
+        ft_printf("Error\nData or mlx invalid.\n");
         close_game(d);
     }
 
@@ -27,13 +27,13 @@ void openWindow(t_data *d, t_textures *t)
 
 
     if (!t->font || !t->wall) {
-        ft_printf("Error\n, Texture failed.\n");
+        ft_printf("Error\nTexture failed.\n");
         close_game(d);
     }
 
     d->win = mlx_new_window(d->mlx, 1000, 480, "so_long");
     if (!d->win) {
-        ft_printf("Error\n, Window failed to create.\n");
+        ft_printf("Error\nWindow failed to create.\n");
         close_game(d);
     }
 }

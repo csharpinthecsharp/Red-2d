@@ -78,7 +78,7 @@ int line_count(t_data *d, t_maps *m)
     return (count);
 }
 
-void map(t_data *d, t_maps *m)
+void map(t_data *d, t_maps *m, char *ber)
 { 
     int y; 
     int linelen;
@@ -90,20 +90,20 @@ void map(t_data *d, t_maps *m)
     d->coin_count = 0;
     if (!m)
     {
-        ft_printf("Error\n, Map failed to load.\n");
+        ft_printf("Error\nMap failed to load.\n");
         close_game(d);
     }
-    m->default_path = "./src/maps/default.ber";
+    m->default_path =  ber;
     if (access(m->default_path, R_OK) != 0)
     {
-        ft_printf("Error\n, Map failed to load.\n");
+        ft_printf("Error\nMap failed to load.\n");
         close_game(d);
     }
 
 	fd = open(m->default_path, O_RDONLY);
 	if (fd < 0)
 	{
-        ft_printf("Error\n, Map failed to be read.\n");
+        ft_printf("Error\nMap failed to be read.\n");
         close_game(d);
 	}
 
@@ -111,7 +111,7 @@ void map(t_data *d, t_maps *m)
     d->map = malloc(sizeof(char *) * linelen + 1);
     if (!d->map)
     {
-        ft_printf("Error\n, Map allocation failed.\n");
+        ft_printf("Error\nMap allocation failed.\n");
         close_game(d);
     }
 	while ((line = get_next_line(fd)) != NULL)

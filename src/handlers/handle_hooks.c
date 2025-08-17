@@ -49,7 +49,7 @@ int keyPress(int keycode, t_data *d)
     static int count;
 
     if (!d || !d->mlx || !d->win || !t->font || !t->player) {
-        ft_printf("Error\n Data are not set.\n");
+        ft_printf("Error\nData are not set.\n");
         close_game(d);
     }
 

@@ -19,17 +19,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-
-/*----- COLORS -----*/
-# define RED "\x1b[31m"
-# define GREEN "\x1b[32m"
-# define RESET "\x1b[0m"
-
-/*----- EMOJI -----*/
-# define NO "\xE2\x9C\x96"
-# define YES "\xE2\x9C\x94"
-# define CRY "\xF0\x9F\x98\xA2"
-
 typedef struct s_textures
 {
     void *font;
@@ -88,10 +77,10 @@ int is_right_path(t_textures *t, t_data *d);
 
 void openWindow(t_data *d, t_textures *t);
 int keyPress(int keycode, t_data *d);
-void map(t_data *d, t_maps *m);
 int isWall(int x, int y, t_data *d);
 void is_coin(int x, int y, t_data *d);
 int close_game(t_data *d);
+void map(t_data *d, t_maps *m, char *ber);
 
 void print_line(char *line, t_data *d, t_textures *t, int y);
 void free_textures(t_data *d, t_textures *t);

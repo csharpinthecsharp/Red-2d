@@ -19,7 +19,7 @@ int is_right_path(t_textures *t, t_data *d)
 
     if (!t)
     {
-        ft_printf("Error\n, Texture failed.\n");
+        ft_printf("Error\nTexture failed.\n");
         close_game(d);
     }
     
@@ -34,7 +34,7 @@ int is_right_path(t_textures *t, t_data *d)
     {
         if (access(paths[i], R_OK) != 0)
         {
-            ft_printf("Error\n, Assets are not reachable.\n");
+            ft_printf("Error\nAssets are not reachable.\n");
             close_game(d);
         }
         i += 1;
@@ -61,7 +61,7 @@ void load_t(t_data *d)
         d->mlx = mlx_init();
         if (!d->mlx) 
         {
-            ft_printf("Error\n, Mlx is not set.\n");
+            ft_printf("Error\nMlx is not set.\n");
             close_game(d);
         }
     }
