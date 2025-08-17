@@ -6,11 +6,11 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 15:25:37 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/17 01:53:29 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/17 20:40:34 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/so_long.h"
+#include "../../so_long.h"
 
 void	open_window(t_data *d, t_textures *t)
 {
@@ -24,6 +24,7 @@ void	open_window(t_data *d, t_textures *t)
 			&d->height);
 	t->exit = mlx_xpm_file_to_image(d->mlx, t->exit_path, &d->width,
 			&d->height);
+			
 	if (!t->font || !t->wall)
 	{
 		ft_printf("Error\nTexture failed.\n");

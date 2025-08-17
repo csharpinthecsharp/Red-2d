@@ -6,11 +6,11 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 03:01:10 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/17 01:56:41 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/17 20:40:41 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/so_long.h"
+#include "../../so_long.h"
 
 void    free_textures(t_data *d, t_textures *t)
 {

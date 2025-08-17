@@ -6,7 +6,7 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 20:24:11 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/17 01:52:25 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/17 20:38:20 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define SO_LONG_H
 # define TILE_SIZE 40
 
-# include "../libft/libft.h"
-# include "../minilibx-linux/mlx.h"
+# include "libft/libft.h"
+# include "minilibx-linux/mlx.h"
 # include <stdlib.h>
 # include <unistd.h>
 
@@ -43,6 +43,15 @@ typedef struct s_coin
 	int			y;
 }				t_coin;
 
+typedef struct s_exist
+{
+	int			font_exist;
+	int			wall_exist;
+	int			coll_exist;
+	int			player_exist;
+	int			exit_exist;
+}				t_exist;
+
 typedef struct s_data
 {
 	void		*mlx;
@@ -62,6 +71,7 @@ typedef struct s_data
 	char		**map;
 	t_textures	t;
 	t_coin		*coins;
+	t_exist		*exist;
 }				t_data;
 
 typedef struct s_maps
@@ -75,7 +85,7 @@ typedef struct s_render_args
     t_data      *d;
     t_textures  *t;
     int         y;
-}   t_render_args;
+}  			    t_render_args;
 
 /*
 ** NAME: Handlers
@@ -83,7 +93,7 @@ typedef struct s_render_args
 ** DESC: Handlers function are meant to handle some cases.
 */
 void			load_t(t_data *d);
-void			load_t_path(t_textures *t);
+void			init_tex(t_data *d);
 int				is_right_path(t_textures *t, t_data *d);
 
 void			open_window(t_data *d, t_textures *t);
@@ -96,8 +106,10 @@ void 		    handle_coin(int i, t_render_args *a);
 void   			draw_basic_tile(int i, char tile, t_render_args *a);
 void   			print_line(char *line, t_render_args *a);
 void			free_textures(t_data *d, t_textures *t);
-void   			init_data(t_data *d);
+void   			init_var(t_data *d);
 void   		    free_coins(t_data *d);
 void    		free_map(char **map);
+int 			format_check(char *str);
+void			exit_error(char *msg, t_data *d);
 
 #endif

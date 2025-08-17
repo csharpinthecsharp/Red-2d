@@ -6,11 +6,11 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 03:04:04 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/17 02:07:32 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/17 20:40:36 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/so_long.h"
+#include "../../so_long.h"
 
 void	draw_basic_tile(int i, char tile, t_render_args *a)
 {
@@ -97,51 +97,29 @@ int	line_count(t_data *d, t_maps *m)
 
 void	map(t_data *d, t_maps *m, char *ber)
 {
-	int y;
-	int linelen;
+	int				fd;
+	int				y;
+	char			*line;
+	t_render_args	args;
 
-	int fd;
-	char *line;
-	t_render_args args;
-
+	if (!m || access((m->default_path = ber), R_OK) != 0)
+		exit_error("Map failed to load.", d);
+	if ((fd = open(m->default_path, O_RDONLY)) < 0)
+		exit_error("Map failed to be read.", d);
+	if (!(d->map = malloc(sizeof(char *) * (line_count(d, m) + 1))))
+		exit_error("Map allocation failed.", d);
 	y = 0;
 	args.d = d;
 	args.t = &d->t;
-	
-	if (!m)
-	{
-		ft_printf("Error\nMap failed to load.\n");
-		close_game(d);
-	}
-	m->default_path = ber;
-	if (access(m->default_path, R_OK) != 0)
-	{
-		ft_printf("Error\nMap failed to load.\n");
-		close_game(d);
-	}
-	fd = open(m->default_path, O_RDONLY);
-	if (fd < 0)
-	{
-		ft_printf("Error\nMap failed to be read.\n");
-		close_game(d);
-	}
-	linelen = line_count(d, m);
-	d->map = malloc(sizeof(char *) * (linelen + 1));
-	if (!d->map)
-	{
-		ft_printf("Error\nMap allocation failed.\n");
-		close_game(d);
-	}
 	while ((line = get_next_line(fd)) != NULL)
 	{
 		d->map[y] = ft_strdup(line);
-		args.y = y; 
+		args.y = y++;
 		print_line(line, &args);
 		free(line);
-		y++;
 	}
-	//A FAIRE; The map must contain 1 exit, at least 1 collectible, and 1 starting position to
-	// be valid.
-	close(fd);
 	d->map[y] = NULL;
+	close(fd);
+	//if (!textures_check(d))
+	//	exit_error("Texture failed to load into the map.", d);
 }
