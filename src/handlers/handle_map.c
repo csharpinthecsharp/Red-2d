@@ -6,7 +6,7 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 03:04:04 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/17 22:54:15 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/17 23:59:23 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ void map(t_data *d, char *ber)
         exit_error("Map failed to be read.", d);
     if (!rules_check(d))
         exit_error("Textures rules are missing.", d);
+    if (!is_rectangular(d))
+        exit_error("Map is not rectangular.", d);
     if (!(d->map = malloc(sizeof(char *) * (line_count(d) + 1))))
         exit_error("Map allocation failed.", d);
     y = 0;

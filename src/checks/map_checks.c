@@ -6,7 +6,7 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 19:45:56 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/17 23:10:02 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/17 23:56:46 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,36 @@ int	line_count(t_data *d)
 	}
 	close(fd);
 	return (count);
+}
+
+int fline_count(t_data *d)
+{
+    int fd, count;
+    char *line;
+    
+    fd = open((d)->map_path, O_RDONLY);
+    if (fd < 0)
+    {
+        ft_printf("Error\nMap failed to be read.\n");
+        close_game(d);
+    }
+    line = get_next_line(fd);
+    if (!line)
+    {
+        close(fd);
+        return (0);
+    }
+    count = ft_strlen(line);
+    if (line[count - 1] == '\n')
+        count--;
+    free(line);
+    close(fd);
+    return (count);
+}
+
+int is_rectangular(t_data *d)
+{
+    if (line_count(d) < fline_count(d))
+        return (1);
+    return (0);
 }

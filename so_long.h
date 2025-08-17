@@ -6,7 +6,7 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 20:24:11 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/17 23:23:54 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/17 23:53:36 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void init_var(t_data *d);
 */
 void map(t_data *d, char *ber);
 int line_count(t_data *d);
+int fline_count(t_data *d);
 int format_check(char *str);
 int rules_check(t_data *d);
 
@@ -95,7 +96,7 @@ void is_coin(int x, int y, t_data *d);
 ** DESC: Helper functions for file and path validation
 */
 int is_right_path(t_data *d);
-
+int is_rectangular(t_data *d);
 /*
 ** NAME: Memory Management & Cleanup
 ** DESC: Functions for freeing allocated memory and cleanup
