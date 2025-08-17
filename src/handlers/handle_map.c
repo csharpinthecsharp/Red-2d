@@ -12,114 +12,125 @@
 
 #include "../../include/so_long.h"
 
-void print_line(char *line, t_data *d, t_textures *t, int y)
+void	print_line(char *line, t_data *d, t_textures *t, int y)
 {
-    int i = 0;
+	int		i;
+	t_coin	*new_coins;
 
-    if (!t->font || !t->wall) {
-        ft_printf("%s * %s Error: textures not loaded properly!\n", RED, NO);
-        return;
-    }
-
-    while (line[i])
-    {
-        if (line[i] == '0') {
-            mlx_put_image_to_window(d->mlx, d->win, t->font, i * TILE_SIZE, y * TILE_SIZE);
-        }
-        else if (line[i] == '1') {
-            mlx_put_image_to_window(d->mlx, d->win, t->wall, i * TILE_SIZE, y * TILE_SIZE);
-        }
-        else if (line[i] == 'P') {
-            mlx_put_image_to_window(d->mlx, d->win, t->player, i * TILE_SIZE, y * TILE_SIZE);
-            d->player_x = i;
-            d->player_y = y;
-        }
-        else if (line[i] == 'E') {
-            mlx_put_image_to_window(d->mlx, d->win, t->font, i * TILE_SIZE, y * TILE_SIZE);
-            d->exit_loc_x = i;
-            d->exit_loc_y = y;
-        }
-        else if (line[i] == 'C') {
-            mlx_put_image_to_window(d->mlx, d->win, t->f_00, i * TILE_SIZE, y * TILE_SIZE);
-
-            t_coin *new_coins  = realloc(d->coins, sizeof(t_coin) * (d->coin_count + 1)); 
-            if (!new_coins)
-            {
-                    ft_printf("Error\n Realloc failed.\n");
-                    return;
-            } 
-            d->coins = new_coins;
-            d->coins[d->coin_count].x = i;
-            d->coins[d->coin_count].y = y;
-            d->coin_count++;
-        }
-        i++;
-    }
+	i = 0;
+	if (!t->font || !t->wall)
+	{
+		ft_printf("Error\nTexture failed to load into the map.\n");
+		return ;
+	}
+	while (line[i])
+	{
+		if (line[i] == '0')
+		{
+			mlx_put_image_to_window(d->mlx, d->win, t->font, i * TILE_SIZE, y
+				* TILE_SIZE);
+		}
+		else if (line[i] == '1')
+		{
+			mlx_put_image_to_window(d->mlx, d->win, t->wall, i * TILE_SIZE, y
+				* TILE_SIZE);
+		}
+		else if (line[i] == 'P')
+		{
+			mlx_put_image_to_window(d->mlx, d->win, t->player, i * TILE_SIZE, y
+				* TILE_SIZE);
+			d->player_x = i;
+			d->player_y = y;
+		}
+		else if (line[i] == 'E')
+		{
+			mlx_put_image_to_window(d->mlx, d->win, t->font, i * TILE_SIZE, y
+				* TILE_SIZE);
+			d->exit_loc_x = i;
+			d->exit_loc_y = y;
+		}
+		else if (line[i] == 'C')
+		{
+			mlx_put_image_to_window(d->mlx, d->win, t->f_00, i * TILE_SIZE, y
+				* TILE_SIZE);
+			new_coins = realloc(d->coins, sizeof(t_coin) * (d->coin_count + 1));
+			if (!new_coins)
+			{
+				ft_printf("Error\nRealloc failed.\n");
+				return ;
+			}
+			d->coins = new_coins;
+			d->coins[d->coin_count].x = i;
+			d->coins[d->coin_count].y = y;
+			d->coin_count++;
+		}
+		i++;
+	}
 }
 
-int line_count(t_data *d, t_maps *m)
+int	line_count(t_data *d, t_maps *m)
 {
-    int		fd;
+	int		fd;
 	char	*line;
-    int count;
+	int		count;
 
-    count = 0;
-    fd = open(m->default_path, O_RDONLY);
+	count = 0;
+	fd = open(m->default_path, O_RDONLY);
 	if (fd < 0)
 	{
-        ft_printf("Error\n, Map failed to be read.\n");
-        close_game(d);
+		ft_printf("Error\nMap failed to be read.\n");
+		close_game(d);
 	}
-    while ((line = get_next_line(fd)) != NULL)
+	while ((line = get_next_line(fd)) != NULL)
 	{
-        count++;
-        free(line);
+		count++;
+		free(line);
 	}
-    return (count);
+	return (count);
 }
 
-void map(t_data *d, t_maps *m, char *ber)
-{ 
-    int y; 
-    int linelen;
+void	map(t_data *d, t_maps *m, char *ber)
+{
+	int y;
+	int linelen;
 
-    int		fd;
-	char	*line;
+	int fd;
+	char *line;
 
-    y = 0;
-    d->coin_count = 0;
-    if (!m)
-    {
-        ft_printf("Error\nMap failed to load.\n");
-        close_game(d);
-    }
-    m->default_path =  ber;
-    if (access(m->default_path, R_OK) != 0)
-    {
-        ft_printf("Error\nMap failed to load.\n");
-        close_game(d);
-    }
+	y = 0;
+	d->coin_count = 0;
+	if (!m)
+	{
+		ft_printf("Error\nMap failed to load.\n");
+		close_game(d);
+	}
+	m->default_path = ber;
+	if (access(m->default_path, R_OK) != 0)
+	{
+		ft_printf("Error\nMap failed to load.\n");
+		close_game(d);
+	}
 
 	fd = open(m->default_path, O_RDONLY);
 	if (fd < 0)
 	{
-        ft_printf("Error\nMap failed to be read.\n");
-        close_game(d);
+		ft_printf("Error\nMap failed to be read.\n");
+		close_game(d);
 	}
 
-    linelen = line_count(d, m);
-    d->map = malloc(sizeof(char *) * linelen + 1);
-    if (!d->map)
-    {
-        ft_printf("Error\nMap allocation failed.\n");
-        close_game(d);
-    }
+	linelen = line_count(d, m);
+	d->map = malloc(sizeof(char *) * linelen + 1);
+	if (!d->map)
+	{
+		ft_printf("Error\nMap allocation failed.\n");
+		close_game(d);
+	}
 	while ((line = get_next_line(fd)) != NULL)
 	{
-        d->map[y] = ft_strdup(line); 
-        print_line(line, d, &d->t, y);
-        free(line);
-        y++;
+		d->map[y] = ft_strdup(line);
+		print_line(line, d, &d->t, y);
+		free(line);
+		y++;
 	}
 	close(fd);
 }
