@@ -6,7 +6,7 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 03:04:04 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/16 22:12:59 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/17 02:07:32 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,13 @@ void print_line(char *line, t_data *d, t_textures *t, int y)
         }
         else if (line[i] == 'P') {
             mlx_put_image_to_window(d->mlx, d->win, t->player, i * TILE_SIZE, y * TILE_SIZE);
-                d->player_x = i;
-                d->player_y = y;
+            d->player_x = i;
+            d->player_y = y;
+        }
+        else if (line[i] == 'E') {
+            mlx_put_image_to_window(d->mlx, d->win, t->font, i * TILE_SIZE, y * TILE_SIZE);
+            d->exit_loc_x = i;
+            d->exit_loc_y = y;
         }
         else if (line[i] == 'C') {
             mlx_put_image_to_window(d->mlx, d->win, t->f_00, i * TILE_SIZE, y * TILE_SIZE);
@@ -40,7 +45,7 @@ void print_line(char *line, t_data *d, t_textures *t, int y)
             t_coin *new_coins  = realloc(d->coins, sizeof(t_coin) * (d->coin_count + 1)); 
             if (!new_coins)
             {
-                    ft_printf("Memory allocation failed\n");
+                    ft_printf("Error\n Realloc failed.\n");
                     return;
             } 
             d->coins = new_coins;
@@ -48,55 +53,69 @@ void print_line(char *line, t_data *d, t_textures *t, int y)
             d->coins[d->coin_count].y = y;
             d->coin_count++;
         }
-        else 
-            ft_printf("%s * %s Invalid character in map: %c\n", RED, NO, line[i]);
         i++;
     }
+}
+
+int line_count(t_data *d, t_maps *m)
+{
+    int		fd;
+	char	*line;
+    int count;
+
+    count = 0;
+    fd = open(m->default_path, O_RDONLY);
+	if (fd < 0)
+	{
+        ft_printf("Error\n, Map failed to be read.\n");
+        close_game(d);
+	}
+    while ((line = get_next_line(fd)) != NULL)
+	{
+        count++;
+        free(line);
+	}
+    return (count);
 }
 
 void map(t_data *d, t_maps *m)
 { 
     int y; 
-    int linelen = 12;
-    y = 0;
+    int linelen;
 
     int		fd;
 	char	*line;
 
+    y = 0;
     d->coin_count = 0;
     if (!m)
     {
-        ft_printf("%s * %s MAPS: Struct failed!\n", RED, NO);
-        return;
+        ft_printf("Error\n, Map failed to load.\n");
+        close_game(d);
     }
-    ft_printf("%s * %s MAPS: Struct successfuly loaded!\n", GREEN, YES);
-
     m->default_path = "./src/maps/default.ber";
     if (access(m->default_path, R_OK) != 0)
     {
-        ft_printf("%s * %s MAPS: Error while loading map!\n", RED, NO);
-        return;
+        ft_printf("Error\n, Map failed to load.\n");
+        close_game(d);
     }
-    ft_printf("%s * %s MAPS: Maps successfuly loaded!\n", GREEN, YES);
-
 
 	fd = open(m->default_path, O_RDONLY);
 	if (fd < 0)
 	{
-		ft_printf("Erreur lors de l'ouverture du fichier");
-		return;
+        ft_printf("Error\n, Map failed to be read.\n");
+        close_game(d);
 	}
 
+    linelen = line_count(d, m);
     d->map = malloc(sizeof(char *) * linelen + 1);
     if (!d->map)
     {
-        return;
+        ft_printf("Error\n, Map allocation failed.\n");
+        close_game(d);
     }
 	while ((line = get_next_line(fd)) != NULL)
 	{
-
-        // IL FAUT QUE JE FASSE UN VRAI COUNT LINE AU 
-        // LIEU DE LE HARD CODE. MAIS FLEMME Là.
         d->map[y] = ft_strdup(line); 
         print_line(line, d, &d->t, y);
         free(line);
