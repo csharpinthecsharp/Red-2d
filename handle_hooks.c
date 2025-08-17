@@ -6,11 +6,11 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 00:47:22 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/17 23:24:41 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/18 00:15:48 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../so_long.h"
+#include "so_long.h"
 
 int	is_wall(int x, int y, t_data *d)
 {

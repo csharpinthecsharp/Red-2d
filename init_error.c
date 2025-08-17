@@ -6,11 +6,11 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 20:24:49 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/17 20:40:46 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/18 00:15:39 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../so_long.h"
+#include "so_long.h"
 
 void	exit_error(char *msg, t_data *d)
 {

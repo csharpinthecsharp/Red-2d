@@ -6,11 +6,11 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 15:25:37 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/17 22:40:29 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/18 00:15:44 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../so_long.h"
+#include "so_long.h"
 
 void	open_window(t_data *d)
 {

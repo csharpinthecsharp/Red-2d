@@ -21,14 +21,14 @@ MLX_LIB		=	$(addprefix $(MLX_PATH), $(MLX_FILE))
 MLX_EX		=	$(MLX_LIB) $(MLX_FLAG)
 
 C_FILE		=	so_long.c					\
-				src/handlers/handle_textures.c	\
-				src/handlers/handle_window.c	\
-				src/handlers/handle_hooks.c 	\
-				src/handlers/handle_map.c      \
-				src/handlers/handle_free.c 		\
-				src/inits/init_data.c			\
-				src/checks/map_checks.c			\
-				src/inits/init_error.c		\
+				handle_textures.c	\
+				handle_window.c	\
+				handle_hooks.c 	\
+				handle_map.c      \
+				handle_free.c 		\
+				init_data.c			\
+				check_map.c			\
+				init_error.c		\
 
 SRC_DIR		=	./
 
