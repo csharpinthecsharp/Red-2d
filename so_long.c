@@ -6,7 +6,7 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 15:25:43 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/17 20:38:02 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/17 22:50:03 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	main(int ac, char *av[])
 {
 	t_data	data;
-	t_maps	maps;
 	t_data	*d;
 
 	d = &data;
@@ -24,8 +23,8 @@ int	main(int ac, char *av[])
 	{
 		init_var(&data);
 		load_t(&data);
-		open_window(d, &d->t);
-		map(&data, &maps, av[1]);
+		open_window(d);
+		map(&data, av[1]);
 		mlx_hook(d->win, 2, 1L << 0, keyPress, d);
 		mlx_loop(d->mlx);
 	}

@@ -6,34 +6,28 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 15:25:37 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/17 20:40:34 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/17 22:40:29 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
 
-void	open_window(t_data *d, t_textures *t)
+void	open_window(t_data *d)
 {
-	t->font = mlx_xpm_file_to_image(d->mlx, t->font_path, &d->width,
+	d->t.font = mlx_xpm_file_to_image(d->mlx, d->t.font_path, &d->width,
 			&d->height);
-	t->wall = mlx_xpm_file_to_image(d->mlx, t->wall_path, &d->width,
+	d->t.wall = mlx_xpm_file_to_image(d->mlx, d->t.wall_path, &d->width,
 			&d->height);
-	t->player = mlx_xpm_file_to_image(d->mlx, t->player_path, &d->width,
+	d->t.player = mlx_xpm_file_to_image(d->mlx, d->t.player_path, &d->width,
 			&d->height);
-	t->f_00 = mlx_xpm_file_to_image(d->mlx, t->f_00_path, &d->width,
+	d->t.f_00 = mlx_xpm_file_to_image(d->mlx, d->t.f_00_path, &d->width,
 			&d->height);
-	t->exit = mlx_xpm_file_to_image(d->mlx, t->exit_path, &d->width,
+	d->t.exit = mlx_xpm_file_to_image(d->mlx, d->t.exit_path, &d->width,
 			&d->height);
 			
-	if (!t->font || !t->wall)
-	{
-		ft_printf("Error\nTexture failed.\n");
-		close_game(d);
-	}
+	if (!d->t.font || !d->t.wall)
+		exit_error("Error\nTexture failed", d);
 	d->win = mlx_new_window(d->mlx, 1000, 480, "so_long");
 	if (!d->win)
-	{
-		ft_printf("Error\nWindow failed to create.\n");
-		close_game(d);
-	}
+		exit_error("Window failed to create", d);
 }

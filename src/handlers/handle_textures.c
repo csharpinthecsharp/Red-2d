@@ -6,33 +6,28 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 15:25:39 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/17 20:41:44 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/17 22:52:52 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
 
-int	is_right_path(t_textures *t, t_data *d)
+int	is_right_path(t_data *d)
 {
 	int		i;
 	char	*paths[5];
 
-	if (!t)
-	{
-		ft_printf("Error\nTexture failed.\n");
-		close_game(d);
-	}
-	paths[0] = t->font_path;
-	paths[1] = t->wall_path;
-	paths[2] = t->player_path;
-	paths[3] = t->f_00_path;
-	paths[4] = t->exit_path;
+	paths[0] = d->t.font_path;
+	paths[1] = d->t.wall_path;
+	paths[2] = d->t.player_path;
+	paths[3] = d->t.f_00_path;
+	paths[4] = d->t.exit_path;
 	i = 0;
 	while (i <= 4)
 	{
 		if (access(paths[i], R_OK) != 0)
 		{
-			ft_printf("Error\nAssets are not reachable.\n");
+			exit_error("Assets are not reachable.", d);
 			return (0);
 		}
 		i += 1;
@@ -43,7 +38,7 @@ int	is_right_path(t_textures *t, t_data *d)
 void	load_t(t_data *d)
 {
 	init_tex(d);
-    if (!is_right_path(&d->t, d))
+    if (!is_right_path(d))
         close_game(d);
     d->mlx = mlx_init();
     if (!d->mlx)

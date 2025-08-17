@@ -6,26 +6,26 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 03:01:10 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/17 20:40:41 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/17 22:47:20 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
 
-void    free_textures(t_data *d, t_textures *t)
+void    free_textures(t_data *d)
 {
     if (!d->mlx)
         return;
-    if (t->font)
-        mlx_destroy_image(d->mlx, t->font);
-    if (t->wall)
-        mlx_destroy_image(d->mlx, t->wall);
-    if (t->player)
-        mlx_destroy_image(d->mlx, t->player);
-    if (t->f_00)
-        mlx_destroy_image(d->mlx, t->f_00);
-    if (t->exit)
-        mlx_destroy_image(d->mlx, t->exit);
+    if (d->t.exit)
+        mlx_destroy_image(d->mlx, d->t.font);
+    if (d->t.wall)
+        mlx_destroy_image(d->mlx, d->t.wall);
+    if (d->t.player)
+        mlx_destroy_image(d->mlx, d->t.player);
+    if (d->t.f_00)
+        mlx_destroy_image(d->mlx, d->t.f_00);
+    if (d->t.exit)
+        mlx_destroy_image(d->mlx, d->t.exit);
 }
 
 void    free_map(char **map)
@@ -47,7 +47,7 @@ void    free_coins(t_data *d)
 
 int close_game(t_data *d)
 {
-    free_textures(d, &d->t);
+    free_textures(d);
     free_map(d->map);
     free_coins(d);
 
