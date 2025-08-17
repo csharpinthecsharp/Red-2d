@@ -6,7 +6,7 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 19:45:56 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/17 22:41:14 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/17 23:10:02 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,8 @@ int rules_check(t_data *d)
 
 int	line_count(t_data *d)
 {
-	int		fd;
+	int		fd, count;
 	char	*line;
-	int		count;
 
 	count = 0;
 	fd = open(d->map_path, O_RDONLY);
