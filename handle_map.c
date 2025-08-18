@@ -6,7 +6,7 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 03:04:04 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/18 15:25:38 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/18 19:12:13 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,14 @@ void map(t_data *d, char *ber)
     {
         wash = ft_strtrim(line, "\n");
         d->map[y] = ft_strdup(wash);
-        print_line(d, line, y);
+        print_line(d, wash, y);
         y++;
         free(wash);
         free(line);
     }
     d->map[y] = NULL;
+    if (y == 0)
+    exit_error("Map is empty.", d);
     close(fd);
     if (!is_valid_map(d))
         exit_error("Map is not valid.", d);

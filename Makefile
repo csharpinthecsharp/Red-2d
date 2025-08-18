@@ -20,15 +20,16 @@ MLX_LIB		=	$(addprefix $(MLX_PATH), $(MLX_FILE))
 
 MLX_EX		=	$(MLX_LIB) $(MLX_FLAG)
 
-C_FILE		=	so_long.c					\
+C_FILE		=	so_long.c			\
 				handle_textures.c	\
-				handle_window.c	\
-				handle_hooks.c 	\
-				handle_map.c      \
+				handle_window.c		\
+				handle_hooks.c 		\
+				handle_map.c      	\
 				handle_free.c 		\
 				init_data.c			\
 				check_map.c			\
 				init_error.c		\
+				check_map_utils.c	\
 
 SRC_DIR		=	./
 

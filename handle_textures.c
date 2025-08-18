@@ -6,7 +6,7 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 15:25:39 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/18 00:15:45 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/18 18:32:51 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	is_right_path(t_data *d)
 			exit_error("Assets are not reachable.", d);
 			return (0);
 		}
-		i += 1;
+		i++;
 	}
 	return (1);
 }

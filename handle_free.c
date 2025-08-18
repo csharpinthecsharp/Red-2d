@@ -6,17 +6,17 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 03:01:10 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/18 00:15:50 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/18 18:41:33 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void    free_textures(t_data *d)
+void free_textures(t_data *d)
 {
     if (!d->mlx)
         return;
-    if (d->t.exit)
+    if (d->t.font)
         mlx_destroy_image(d->mlx, d->t.font);
     if (d->t.wall)
         mlx_destroy_image(d->mlx, d->t.wall);
@@ -47,16 +47,19 @@ void    free_coins(t_data *d)
 
 int close_game(t_data *d)
 {
-    free_textures(d);
-    free_map(d->map);
-    free_coins(d);
-
-    if (d->win)
-        mlx_destroy_window(d->mlx, d->win);
-    if (d->mlx)
+    if (d)
     {
-        mlx_destroy_display(d->mlx);
-        free(d->mlx);
+        free_textures(d);
+        free_map(d->map);
+        free_coins(d);
+
+        if (d->win && d->mlx)
+            mlx_destroy_window(d->mlx, d->win);
+        if (d->mlx)
+        {
+            mlx_destroy_display(d->mlx);
+            free(d->mlx);
+        }
     }
     exit(0);
     return (0);
