@@ -6,7 +6,7 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 03:04:04 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/18 15:02:14 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/18 15:25:38 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,8 @@ void print_line(t_data *d, char *line, int y)
 
 void map(t_data *d, char *ber)
 {
-    int fd;
-    int y;
-    char *line;
-    char *wash;
+    int fd, y;
+    char *line, *wash;
     
     d->map_path = ber;
     if (!ber || access(d->map_path, R_OK) != 0)
@@ -95,7 +93,6 @@ void map(t_data *d, char *ber)
     }
     d->map[y] = NULL;
     close(fd);
-
     if (!is_valid_map(d))
         exit_error("Map is not valid.", d);
 }
