@@ -6,7 +6,7 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 20:24:11 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/17 23:53:36 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/18 14:50:01 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int line_count(t_data *d);
 int fline_count(t_data *d);
 int format_check(char *str);
 int rules_check(t_data *d);
-
 /*
 ** NAME: Rendering & Graphics
 ** DESC: Functions for drawing game elements
@@ -96,7 +95,10 @@ void is_coin(int x, int y, t_data *d);
 ** DESC: Helper functions for file and path validation
 */
 int is_right_path(t_data *d);
+int is_enclosed_by_walls(t_data *d);
 int is_rectangular(t_data *d);
+int is_valid_map(t_data *d);
+
 /*
 ** NAME: Memory Management & Cleanup
 ** DESC: Functions for freeing allocated memory and cleanup

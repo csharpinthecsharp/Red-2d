@@ -6,7 +6,7 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 03:04:04 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/18 00:15:47 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/18 15:02:14 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,26 +74,28 @@ void map(t_data *d, char *ber)
     int fd;
     int y;
     char *line;
+    char *wash;
     
     d->map_path = ber;
     if (!ber || access(d->map_path, R_OK) != 0)
         exit_error("Map failed to load.", d);
     if ((fd = open(d->map_path, O_RDONLY)) < 0)
         exit_error("Map failed to be read.", d);
-    if (!rules_check(d))
-        exit_error("Textures rules are missing.", d);
-    if (!is_rectangular(d))
-        exit_error("Map is not rectangular.", d);
     if (!(d->map = malloc(sizeof(char *) * (line_count(d) + 1))))
         exit_error("Map allocation failed.", d);
     y = 0;
     while ((line = get_next_line(fd)) != NULL)
     {
-        d->map[y] = ft_strdup(line);
+        wash = ft_strtrim(line, "\n");
+        d->map[y] = ft_strdup(wash);
         print_line(d, line, y);
         y++;
+        free(wash);
         free(line);
     }
     d->map[y] = NULL;
     close(fd);
+
+    if (!is_valid_map(d))
+        exit_error("Map is not valid.", d);
 }
