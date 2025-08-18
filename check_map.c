@@ -6,7 +6,7 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 19:45:56 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/18 15:17:09 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/18 18:21:56 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,9 +125,34 @@ int is_enclosed_by_walls(t_data *d)
 	return (1);
 }
 
+int is_unique_text(t_data *d)
+{
+    int i;
+    int j;
+    int count;
+
+    i = 0;
+    count = 0;
+    while (d->map[i] != NULL)
+    {
+        j = 0;
+        while (d->map[i][j] != '\0')
+        {
+            if (d->map[i][j] == 'P' || d->map[i][j] == 'E')
+                count++;
+            j++;
+        }
+        i++;
+    }
+    if (count > 2)
+        return (0);
+    return (1);
+}
+
 int is_valid_map(t_data *d)
 {
 	return (is_rectangular(d) &&
      rules_check(d)) &&
-    is_enclosed_by_walls(d);
+    is_enclosed_by_walls(d) &&
+	is_unique_text(d);
 }

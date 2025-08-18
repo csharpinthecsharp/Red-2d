@@ -6,7 +6,7 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 20:24:11 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/18 14:50:01 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/18 18:21:20 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ int is_right_path(t_data *d);
 int is_enclosed_by_walls(t_data *d);
 int is_rectangular(t_data *d);
 int is_valid_map(t_data *d);
+int is_unique_text(t_data *d);
 
 /*
 ** NAME: Memory Management & Cleanup
