@@ -12,26 +12,26 @@
 
 #include "so_long.h"
 
-void    init_var(t_data *d)
+void	init_var(t_data *d)
 {
-    d->mlx = NULL;
-    d->win = NULL;
-    d->map = NULL;
-    d->coins = NULL;
-    d->t.wall = NULL;
-    d->t.player = NULL;
-    d->t.f_00 = NULL;
-    d->t.exit = NULL;
-    d->t.font = NULL;
-    d->map_path = NULL;
-    d->coin_count = 0;
-    d->player_x = -1;
-    d->player_y = -1;
-    d->count = 0;
-    d->exit_loc_x = -1;
-    d->exit_loc_y = -1;
-    d->width = 0;
-    d->height = 0;
+	d->mlx = NULL;
+	d->win = NULL;
+	d->map = NULL;
+	d->coins = NULL;
+	d->t.wall = NULL;
+	d->t.player = NULL;
+	d->t.f_00 = NULL;
+	d->t.exit = NULL;
+	d->t.font = NULL;
+	d->map_path = NULL;
+	d->coin_count = 0;
+	d->player_x = -1;
+	d->player_y = -1;
+	d->count = 0;
+	d->exit_loc_x = -1;
+	d->exit_loc_y = -1;
+	d->width = 0;
+	d->height = 0;
 }
 
 void	init_tex(t_data *d)

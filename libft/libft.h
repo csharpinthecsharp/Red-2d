@@ -6,7 +6,7 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 12:32:27 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/10 00:21:44 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/18 21:17:39 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 #  undef BUFFER_SIZE
 #  define BUFFER_SIZE 1000000
 # endif
+# include <fcntl.h>
 # include <stdarg.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <fcntl.h>
 
 void	ft_bzero(void *s, size_t n);
 int		ft_isalpha(int c);
@@ -47,7 +47,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len);
 int		ft_atoi(const char *str);
 void	*ft_calloc(size_t nmemb, size_t size);
 char	*ft_strdup(const char *s);
-char    *ft_strndup(const char *s, size_t n);
+char	*ft_strndup(const char *s, size_t n);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
@@ -78,7 +78,7 @@ int		ft_int_len(long n);
 char	*get_next_line(int fd);
 char	*final_return(char **reste, ssize_t bytes_read);
 char	*handle_error(char **reste);
-char	*update_reste(char **reste, char *buffer); 
+char	*update_reste(char **reste, char *buffer);
 char	*extract_line(char **reste, char *newline);
 
 #endif

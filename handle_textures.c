@@ -38,12 +38,12 @@ int	is_right_path(t_data *d)
 void	load_t(t_data *d)
 {
 	init_tex(d);
-    if (!is_right_path(d))
-        close_game(d);
-    d->mlx = mlx_init();
-    if (!d->mlx)
-    {
-        ft_printf("Error\nMlx is not set.\n");
-        exit(EXIT_FAILURE);
-    }
+	if (!is_right_path(d))
+		close_game(d);
+	d->mlx = mlx_init();
+	if (!d->mlx)
+	{
+		ft_printf("Error\nMlx is not set.\n");
+		exit(EXIT_FAILURE);
+	}
 }

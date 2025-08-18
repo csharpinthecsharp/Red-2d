@@ -6,7 +6,7 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 00:47:22 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/18 00:15:48 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/18 21:31:46 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,27 +42,43 @@ void	is_coin(int x, int y, t_data *d)
 		close_game(d);
 	}
 }
-int keyPress(int keycode, t_data *d)
-{	
-    int new_x = (d)->player_x, new_y = (d)->player_y;
-    if (keycode == 65307)
-        close_game(d);
-    mlx_put_image_to_window(d->mlx, d->win, d->t.font, d->player_x * TILE_SIZE, d->player_y * TILE_SIZE);
-    if ((keycode == 65361 || keycode == 'q') && !is_wall(d->player_x - 1, d->player_y, d))
-        new_x = d->player_x - 1;
-    else if ((keycode == 5362 || keycode == 'z') && !is_wall(d->player_x, d->player_y - 1, d))
-        new_y = d->player_y - 1;
-    else if ((keycode == 65363 || keycode == 'd') && !is_wall(d->player_x + 1, d->player_y, d))
-        new_x = d->player_x + 1;
-    else if ((keycode == 65364 || keycode == 's') && !is_wall(d->player_x, d->player_y + 1, d))
-        new_y = d->player_y + 1;
-    if (new_x != d->player_x || new_y != d->player_y)
-    {
-        is_coin(new_x, new_y, d);
-        d->player_x = new_x;
-        d->player_y = new_y;
-        ft_printf("%d\n", ++d->count);
-    }
-    mlx_put_image_to_window(d->mlx, d->win, d->t.player, d->player_x * TILE_SIZE, d->player_y * TILE_SIZE);
-    return (0);
+
+void	update_player_position(t_data *d, int new_x, int new_y)
+{
+	if (new_x != d->player_x || new_y != d->player_y)
+	{
+		is_coin(new_x, new_y, d);
+		d->player_x = new_x;
+		d->player_y = new_y;
+		ft_printf("%d\n", ++d->count);
+	}
+	mlx_put_image_to_window(d->mlx, d->win, d->t.player, d->player_x
+		* TILE_SIZE, d->player_y * TILE_SIZE);
+}
+
+int	key_press(int keycode, t_data *d)
+{
+	int	new_x;
+	int	new_y;
+
+	new_x = d->player_x;
+	new_y = d->player_y;
+	if (keycode == 65307)
+		close_game(d);
+	mlx_put_image_to_window(d->mlx, d->win, d->t.font, d->player_x * TILE_SIZE,
+		d->player_y * TILE_SIZE);
+	if ((keycode == 65361 || keycode == 'q') && !is_wall(d->player_x - 1,
+			d->player_y, d))
+		new_x = d->player_x - 1;
+	else if ((keycode == 5362 || keycode == 'z') && !is_wall(d->player_x,
+			d->player_y - 1, d))
+		new_y = d->player_y - 1;
+	else if ((keycode == 65363 || keycode == 'd') && !is_wall(d->player_x + 1,
+			d->player_y, d))
+		new_x = d->player_x + 1;
+	else if ((keycode == 65364 || keycode == 's') && !is_wall(d->player_x,
+			d->player_y + 1, d))
+		new_y = d->player_y + 1;
+	update_player_position(d, new_x, new_y);
+	return (0);
 }

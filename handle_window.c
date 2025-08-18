@@ -24,7 +24,6 @@ void	open_window(t_data *d)
 			&d->height);
 	d->t.exit = mlx_xpm_file_to_image(d->mlx, d->t.exit_path, &d->width,
 			&d->height);
-			
 	if (!d->t.font || !d->t.wall)
 		exit_error("Error\nTexture failed", d);
 	d->win = mlx_new_window(d->mlx, 1400, 500, "so_long");

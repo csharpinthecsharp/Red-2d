@@ -12,8 +12,8 @@
 
 #include "so_long.h"
 
-void exit_error(char *msg, t_data *d)
+void	exit_error(char *msg, t_data *d)
 {
-    ft_printf("Error\n%s\n", msg);
-    close_game(d);
+	ft_printf("Error\n%s\n", msg);
+	close_game(d);
 }
