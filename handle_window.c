@@ -6,7 +6,7 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 15:25:37 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/18 15:21:09 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/18 15:56:45 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	open_window(t_data *d)
 			
 	if (!d->t.font || !d->t.wall)
 		exit_error("Error\nTexture failed", d);
-	d->win = mlx_new_window(d->mlx, 1800, 900, "so_long");
+	d->win = mlx_new_window(d->mlx, 1400, 500, "so_long");
 	if (!d->win)
 		exit_error("Window failed to create", d);
 }

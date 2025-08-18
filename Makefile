@@ -12,7 +12,7 @@ MLX_FILE	=	libmlx.a
 
 LIBFT_LIB	=	$(addprefix $(LIBFT_PATH), $(LIBFT_FILE))
 
-MLX_FLAG	=	-lX11 -lXext
+MLX_FLAG	=	-lX11 -lXext -lX11
 
 MLX_PATH	=	./minilibx-linux/
 
