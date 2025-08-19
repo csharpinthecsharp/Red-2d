@@ -6,7 +6,7 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 03:01:10 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/19 02:10:20 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/19 02:23:47 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ int	close_game(t_data *d, int status)
 {
 	if (d)
 	{
+		free_textures(d);
 		if (d->win && d->mlx)
 			mlx_destroy_window(d->mlx, d->win);
-		free_textures(d);
 		free_map(d->map);
 		free_coins(d);
 		if (d->mlx)

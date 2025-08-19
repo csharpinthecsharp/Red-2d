@@ -28,7 +28,7 @@ C_FILE		=	so_long.c			\
 				handle_free.c 		\
 				init_data.c			\
 				check_map.c			\
-				init_error.c		\
+				init_exit.c		\
 				check_map_utils.c	\
 
 SRC_DIR		=	./

@@ -6,7 +6,7 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 20:24:11 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/19 02:10:45 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/19 02:27:56 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,8 +125,8 @@ void			free_coins(t_data *d);
 void			free_map(char **map);
 
 /*
-** NAME: Error Handling
-** DESC: Functions for error management
+** NAME: Exit Handling
+** DESC: Functions for exit management
 */
 void			exit_error(char *msg, t_data *d);
 void			exit_success(char *msg, t_data *d);
