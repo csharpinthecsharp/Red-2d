@@ -6,7 +6,7 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 18:30:40 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/18 21:48:08 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/19 02:09:42 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,7 @@ int	line_count(t_data *d)
 	count = 0;
 	fd = open(d->map_path, O_RDONLY);
 	if (fd < 0)
-	{
-		ft_printf("Error\nMap failed to be read.\n");
-		close_game(d);
-	}
+		exit_error("Map failed to be read", d);
 	line = get_next_line(fd);
 	while (line != NULL)
 	{

@@ -6,7 +6,7 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 19:45:56 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/18 21:29:18 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/19 01:45:35 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,40 +24,40 @@ int	format_check(char *str)
 	return (0);
 }
 
+void	rules_check_element(char c, t_data *d)
+{
+	if (c == '1')
+		d->flags.wall = 1;
+	else if (c == '0')
+		d->flags.empty = 1;
+	else if (c == 'E')
+		d->flags.exit = 1;
+	else if (c == 'C')
+		d->flags.coll = 1;
+	else if (c == 'P')
+		d->flags.player = 1;
+}
+
 int	rules_check(t_data *d)
 {
 	int	x;
 	int	y;
-	int	e;
 
 	x = 0;
-	e = 0;
 	while (d->map[x])
 	{
 		y = 0;
 		while (d->map[x][y])
 		{
-			e = rules_check_element(d->map[x][y], e);
+			rules_check_element(d->map[x][y], d);
 			y++;
 		}
 		x++;
 	}
-	return ((e & 31) == 31);
-}
-
-int	rules_check_element(char c, int e)
-{
-	if (c == '1' && !(e & 1))
-		e |= 1;
-	else if (c == '0' && !(e & 2))
-		e |= 2;
-	else if (c == 'E' && !(e & 4))
-		e |= 4;
-	else if (c == 'C' && !(e & 8))
-		e |= 8;
-	else if (c == 'P' && !(e & 16))
-		e |= 16;
-	return (e);
+	if (d->flags.wall && d->flags.empty && d->flags.exit && d->flags.coll
+		&& d->flags.player)
+		return (1);
+	return (0);
 }
 
 int	is_valid_map(t_data *d)

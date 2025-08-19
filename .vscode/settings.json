@@ -4,7 +4,8 @@
         "so_long.h": "c",
         "mlx.h": "c",
         "unistd.h": "c",
-        "so_long": "c"
+        "so_long": "c",
+        "type_traits": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

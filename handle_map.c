@@ -6,7 +6,7 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 03:04:04 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/18 21:48:55 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/19 02:06:58 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,23 @@ void	draw_basic_tile(t_data *d, int i, char tile, int y)
 void	handle_coin(t_data *d, int i, int y)
 {
 	t_coin	*new_coins;
+	int		j;
 
 	mlx_put_image_to_window(d->mlx, d->win, d->t.f_00, i * TILE_SIZE, y
 		* TILE_SIZE);
-	new_coins = realloc(d->coins, sizeof(t_coin) * (d->coin_count + 1));
+	new_coins = ft_calloc(d->coin_count + 1, sizeof(t_coin));
 	if (!new_coins)
 	{
-		ft_printf("Error\nRealloc failed.\n");
+		exit_error("Allocation failed", d);
 		return ;
 	}
+	j = 0;
+	while (j < d->coin_count)
+	{
+		new_coins[j] = d->coins[j];
+		j++;
+	}
+	free(d->coins);
 	d->coins = new_coins;
 	d->coins[d->coin_count].x = i;
 	d->coins[d->coin_count].y = y;

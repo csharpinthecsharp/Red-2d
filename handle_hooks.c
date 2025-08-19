@@ -6,7 +6,7 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 00:47:22 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/18 21:31:46 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/19 02:10:55 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,13 @@ void	is_coin(int x, int y, t_data *d)
 		if (d->coin_count == 0)
 		{
 			if (!d->t.exit || d->exit_loc_x == -1 || d->exit_loc_y == -1)
-			{
-				ft_printf("Error\nThe exit is not set.\n");
-				close_game(d);
-			}
+				exit_error("The exit is not set", d);
 			mlx_put_image_to_window(d->mlx, d->win, d->t.exit, d->exit_loc_x
 				* TILE_SIZE, d->exit_loc_y * TILE_SIZE);
 		}
 	}
 	if ((d->map[y][x] == 'E') && (d->coin_count == 0))
-	{
-		ft_printf("Success, you found the exit!\n");
-		close_game(d);
-	}
+		exit_success("Success, you found the exit!", d);
 }
 
 void	update_player_position(t_data *d, int new_x, int new_y)
@@ -64,7 +58,7 @@ int	key_press(int keycode, t_data *d)
 	new_x = d->player_x;
 	new_y = d->player_y;
 	if (keycode == 65307)
-		close_game(d);
+		exit_success("See you soon..", d);
 	mlx_put_image_to_window(d->mlx, d->win, d->t.font, d->player_x * TILE_SIZE,
 		d->player_y * TILE_SIZE);
 	if ((keycode == 65361 || keycode == 'q') && !is_wall(d->player_x - 1,

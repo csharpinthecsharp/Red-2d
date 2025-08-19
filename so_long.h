@@ -6,7 +6,7 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 20:24:11 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/18 21:50:34 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/19 02:10:45 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,16 @@ typedef struct s_coin
 	int			x;
 	int			y;
 }				t_coin;
+
+typedef struct s_flags
+{
+	int			wall;
+	int			empty;
+	int			exit;
+	int			coll;
+	int			player;
+}				t_flags;
+
 typedef struct s_data
 {
 	void		*mlx;
@@ -54,6 +64,7 @@ typedef struct s_data
 	char		*map_path;
 	t_textures	t;
 	t_coin		*coins;
+	t_flags		flags;
 }				t_data;
 
 /*
@@ -74,7 +85,7 @@ int				line_count(t_data *d);
 int				fline_count(t_data *d);
 int				format_check(char *str);
 int				rules_check(t_data *d);
-int				rules_check_element(char c, int e);
+void			rules_check_element(char c, t_data *d);
 
 /*
 ** NAME: Rendering & Graphics
@@ -108,7 +119,7 @@ int				is_unique_text(t_data *d);
 ** NAME: Memory Management & Cleanup
 ** DESC: Functions for freeing allocated memory and cleanup
 */
-int				close_game(t_data *d);
+int				close_game(t_data *d, int status);
 void			free_textures(t_data *d);
 void			free_coins(t_data *d);
 void			free_map(char **map);
@@ -118,5 +129,6 @@ void			free_map(char **map);
 ** DESC: Functions for error management
 */
 void			exit_error(char *msg, t_data *d);
+void			exit_success(char *msg, t_data *d);
 
 #endif

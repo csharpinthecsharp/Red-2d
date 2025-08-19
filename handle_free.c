@@ -6,7 +6,7 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 03:01:10 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/18 21:46:28 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/19 02:10:20 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void	free_map(char **map)
 		return ;
 	while (map[i])
 		free(map[i++]);
-	free(map);
+	free(map[i]);
+	map[i] = NULL;
 }
 
 void	free_coins(t_data *d)
@@ -46,21 +47,20 @@ void	free_coins(t_data *d)
 		free(d->coins);
 }
 
-int	close_game(t_data *d)
+int	close_game(t_data *d, int status)
 {
 	if (d)
 	{
+		if (d->win && d->mlx)
+			mlx_destroy_window(d->mlx, d->win);
 		free_textures(d);
 		free_map(d->map);
 		free_coins(d);
-		if (d->win && d->mlx)
-			mlx_destroy_window(d->mlx, d->win);
 		if (d->mlx)
 		{
 			mlx_destroy_display(d->mlx);
 			free(d->mlx);
 		}
 	}
-	exit(0);
-	return (0);
+	exit(status);
 }

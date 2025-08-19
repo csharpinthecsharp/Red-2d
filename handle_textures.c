@@ -6,7 +6,7 @@
 /*   By: ltrillar <ltrillar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 15:25:39 by ltrillar          #+#    #+#             */
-/*   Updated: 2025/08/18 18:32:51 by ltrillar         ###   ########.fr       */
+/*   Updated: 2025/08/19 02:06:55 by ltrillar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,12 @@
 
 int	is_right_path(t_data *d)
 {
-	int		i;
-	char	*paths[5];
-
-	paths[0] = d->t.font_path;
-	paths[1] = d->t.wall_path;
-	paths[2] = d->t.player_path;
-	paths[3] = d->t.f_00_path;
-	paths[4] = d->t.exit_path;
-	i = 0;
-	while (i <= 4)
+	if (access(d->t.font_path, R_OK) != 0 || access(d->t.wall_path, R_OK) != 0
+		|| access(d->t.player_path, R_OK) != 0 || access(d->t.f_00_path,
+			R_OK) != 0 || access(d->t.exit_path, R_OK) != 0)
 	{
-		if (access(paths[i], R_OK) != 0)
-		{
-			exit_error("Assets are not reachable.", d);
-			return (0);
-		}
-		i++;
+		exit_error("Assets are not reachable.", d);
+		return (0);
 	}
 	return (1);
 }
@@ -39,11 +28,20 @@ void	load_t(t_data *d)
 {
 	init_tex(d);
 	if (!is_right_path(d))
-		close_game(d);
+		exit_error("Error\nAssets are not reachable.", d);
 	d->mlx = mlx_init();
 	if (!d->mlx)
-	{
-		ft_printf("Error\nMlx is not set.\n");
-		exit(EXIT_FAILURE);
-	}
+		exit_error("Error\nMLX initialization failed.", d);
+	d->t.font = mlx_xpm_file_to_image(d->mlx, d->t.font_path, &d->width,
+			&d->height);
+	d->t.wall = mlx_xpm_file_to_image(d->mlx, d->t.wall_path, &d->width,
+			&d->height);
+	d->t.player = mlx_xpm_file_to_image(d->mlx, d->t.player_path, &d->width,
+			&d->height);
+	d->t.f_00 = mlx_xpm_file_to_image(d->mlx, d->t.f_00_path, &d->width,
+			&d->height);
+	d->t.exit = mlx_xpm_file_to_image(d->mlx, d->t.exit_path, &d->width,
+			&d->height);
+	if (!d->t.font || !d->t.wall || !d->t.player || !d->t.f_00 || !d->t.exit)
+		exit_error("Error\nTexture loading failed.", d);
 }
