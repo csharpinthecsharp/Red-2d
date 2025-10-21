@@ -19,4 +19,5 @@
  ber ber ber ber ber bière.
 
 <img width="1004" height="481" alt="image" src="https://github.com/user-attachments/assets/a57b6b77-8df9-4844-a236-0a6b3b64cb5a" />
-<img width="244" height="162" alt="image" src="https://github.com/user-attachments/assets/622c6377-87be-4ebd-8296-156332a85381" />
+
+![cat](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExaTF6MzU4YnYzaDEzeWhzOTJkNWs0N3A0cTgydm5iZXlrZXRqNnhtdSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MDJ9IbxxvDUQM/giphy.gif)
