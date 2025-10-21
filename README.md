@@ -4,7 +4,7 @@
 
 - **Language:** C
 - **Graphics Library:** MiniLibX
-- 
+  
 ## Gameplay
 
 - Move using `Z`, `Q`, `S`, `D` or arrow keys.
