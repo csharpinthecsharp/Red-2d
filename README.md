@@ -1,6 +1,6 @@
-# so_long
+# red_2d
 
-**so_long** is a 2D graphical game built with MiniLibX as part of the 42 school curriculum. The player must collect all items and reach the exit to win.
+**red_2d** is a 2D graphical game built with MiniLibX as part of the 42 school curriculum. The player must collect all items and reach the exit to win.
 
 - **Language:** C
 - **Graphics Library:** MiniLibX
