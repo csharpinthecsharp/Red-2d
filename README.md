@@ -11,6 +11,6 @@
 - Collect all `C` items.
 - Reach the `E` exit after collecting everything.
 
-$> make -> Please make sure you have cloned MiniLibX
-$> ./so_long
-$> ber ber ber ber ber bière.
+ $> make -> Please make sure you have cloned MiniLibX
+ $> ./so_long
+ $> ber ber ber ber ber bière.
