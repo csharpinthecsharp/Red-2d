@@ -17,3 +17,5 @@
  $ > ./so_long maps/normal.ber
  
  ber ber ber ber ber bière.
+
+<img width="1004" height="481" alt="image" src="https://github.com/user-attachments/assets/a57b6b77-8df9-4844-a236-0a6b3b64cb5a" />
