@@ -11,8 +11,9 @@
 - Collect all `C` items.
 - Reach the `E` exit after collecting everything.
 
+## How to try ?
  $ > make -> Please make sure you have cloned MiniLibX
  
- $ > ./so_long
+ $ > ./so_long maps/normal.ber
  
  ber ber ber ber ber bière.
